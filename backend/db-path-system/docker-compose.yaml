@@ -1,0 +1,25 @@
+version: '3.6'
+
+# LocalDev environment using docker-compose
+# docker exec -it path-system-db '/bin/bash'
+services:
+
+  db:
+    # Imagen de PostgresSql
+    container_name: path-system-db
+    image: postgres:alpine
+    restart: always
+    environment:
+      # Configuración de credenciales de acceso a la BD
+      - POSTGRES_USER=path_admin
+      - POSTGRES_PASSWORD=path_secret
+      - POSTGRES_DB=path-system
+    ports:
+      - 5432:5432
+    volumes:
+      - type: bind
+        source: ./data
+        target: /var/lib/postgresql/data
+        # - type: bind
+        #source: ../../../misc/database/path-core
+        #target: /home/usr/app/sql

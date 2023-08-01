@@ -1,0 +1,5 @@
+FROM postgres:alpine
+ENV POSTGRES_DB path-system
+ENV POSTGRES_USER path_admin
+ENV POSTGRES_PASSWORD path_secret
+COPY init.sql /docker-entrypoint-initdb.d/
